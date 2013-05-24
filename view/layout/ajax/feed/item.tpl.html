@@ -1,0 +1,66 @@
+<?php foreach($data['feed'] as $feed): ?>
+  <div class="media">
+    <a class="pull-left" href="<?=$feed['site_url']?>">
+      <img class="media-object" src="<?=$feed['favicon']?>">
+    </a>
+    <div class="media-body">
+      <div class="row-fluid">
+      <div class="span9">
+        <h4 class="media-heading"><a href="<?=$feed['site_url']?>" target="_blank"><?=$feed['name']?></a><small><?=$feed['update_time']?></small></h4>
+        <?=$feed['des']?>
+        <p class="meta">
+          <?=get_type_label($feed['type'])?>
+        </p>
+      </div>
+      <div class="span3 text-right" data-fid="<?=$feed['fid']?>">
+        <a href="javascript:;" class="deliver btn btn-warning"><?=__('DELIVER')?></a>
+        <?php if(isset($feed['uid'])): ?>
+          <a href="javascript:;" class="subcribe btn btn-success disabled"><?=__('UNSUBSCRIBE')?></a>
+        <?php else: ?>
+          <a href="javascript:;" class="subcribe btn btn-success"><?=__('SUBSCRIBE')?></a>
+        <?php endif; ?>
+      </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+<?php endforeach; ?>
+<div class="pager">
+  <li class="previous<?php if($data['page'] == 1) echo ' disabled'; ?>">
+    <a href="javascript:;" data-page="<?=$data['older']?>"><?=__('OLDER')?></a>
+  </li>
+  <li class="next <?php if($data['page'] == $data['max_page']) echo ' disabled'; ?>">
+    <a href="javascript:;" data-page="<?=$data['newer']?>"><?=__('NEWER')?></a>
+  </li>
+</div>
+<script type="text/javascript">
+$(".subcribe").on("click", function() {
+  var fid = $(this).parent().attr("data-fid")
+  var btn = this
+  $.getJSON("?c=feed&a=toggle", {"fid": fid}, function(json) {
+    if(json.error_code === 0) {
+      $(btn).text(json.data.label).toggleClass("disabled")
+    } else {
+      $("#login").modal("show")
+    }
+  })
+})
+$(".deliver").on("click", function() {
+  var fid = $(this).parent().attr("data-fid")
+  var btn = this
+  if($(this).hasClass("disabled")) return false
+  $.getJSON("?c=feed&a=deliver", {"fid": fid}, function(json) {
+    if(json.error_code === 0) {
+      $(btn).text(json.data.label).addClass("disabled").css("cursor", "default")
+    } else {
+      $("#login").modal("show")
+    }
+  })
+})
+$(".pager a").on("click", function() {
+  if(!$(this).parent().hasClass("disabled")) {
+    var page = $(this).attr("data-page")
+    $(".feeds").load("?c=feed&a=item<?php if(!empty($data['term'])): ?>&term=<?=$data['term']?><?php endif; ?><?php if(!empty($data['filter'])): ?>&filter=<?=$data['filter']?><?php endif; ?>&page=" + page)
+  }
+})
+</script>

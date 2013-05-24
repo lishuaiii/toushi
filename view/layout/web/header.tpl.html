@@ -1,0 +1,37 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="<?=c('site_domain')?>"><?=c('site_name')?></a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li <?php if(g('a') == 'index' ): ?> class="active"<?php endif; ?> ><a href="?a=index"><?=__('INDEX_PAGE');?></a></li>
+          <li><a href="/blog"><?=__('BLOG');?></a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+      <ul class="nav pull-right">
+        <?php if(!is_login()): ?>
+          <li <?php if(g('a') == 'login' ): ?>class="active"<?php endif; ?> ><a id="login-btn"  href="javascript:;"><?=__('LOGIN');?></a></li>
+          <li <?php if(g('a') == 'signup' ): ?>class="active"<?php endif; ?> ><a href="?c=user&amp;a=signup"><?=__('SIGNUP');?></a></li>
+        <?php else: ?>
+          <li id="main-menu-right" class="<?php if(g('a') == 'profile' ): ?>active<?php endif; ?> dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <img src="<?=gravatar($_SESSION['email'])?>"/>
+              <span><?=$_SESSION['nickname']?></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><a tabindex="-1" href="?c=user&amp;a=profile"><?=__('PROFILE')?></a></li>
+              <li><a tabindex="-1" href="?c=user&amp;a=changepasswd"><?=__('CHANGE_PASSWORD')?></a></li>
+              <li class="divider"></li>
+              <li><a tabindex="-1" href="?c=user&amp;a=logout"><?=__('LOGOUT')?></a></li>
+            </ul>
+          </li>
+        <?php endif; ?>
+      </ul>
+    </div>
+  </div>
+</div>

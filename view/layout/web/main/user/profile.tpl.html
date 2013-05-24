@@ -1,0 +1,62 @@
+<form id="signup-form" class="form-horizontal" method="post" action="?c=user&amp;a=profile">
+  <fieldset>
+    <legend><?=__('PROFILE')?></legend>
+    <div class="control-group <?php if(isset($data['error']['email'])) echo 'error'; ?>">
+      <label class="control-label" for="email"><?=__('EMAIL')?></label>
+      <div class="controls">
+        <input type="text" readonly name="email" id="email" placeholder="<?=__('EMAIL')?>" value="<?=$data['email']?>" />
+        <span class="help-inline"><?=$data['error']['email'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['nickname'])) echo 'error'; ?>">
+      <label class="control-label" for="nickename"><?=__('NICKNAME')?></label>
+      <div class="controls">
+        <input type="text" name="nickname" id="nickname" placeholder="<?=__('NICKNAME');?>" value="<?=$data['nickname']?>" />
+        <span class="help-inline"><?=$data['error']['nickname'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['subscribed_account'])) echo 'error'; ?>">
+      <label class="control-label" for="subscribed_account"><?=__('SUBSCRIBED_ACCOUNT')?></label>
+      <div class="controls">
+        <input type="text" class="input-medium" name="subscribed_account" id="subscribed_account" placeholder="<?=__('SUBSCRIBED_ACCOUNT')?>" value="<?=$data['subscribed_account'][0]?>" />
+        <select class="input-medium" name="account">
+          <?php foreach(c('available_account') as $account): ?>
+            <option value="<?=$account?>" <?php if($data['subscribed_account'][1] == $account): ?>selected<?php endif; ?>><?=$account?></option>
+          <?php endforeach; ?>
+        </select>
+        <span class="help-inline"><?=$data['error']['subscribed_account'][0];?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['timezone'])) echo 'error'; ?>">
+      <label class="control-label" for="timezone"><?=__('TIMEZONE')?></label>
+      <div class="controls">
+        <select class="input-medium" name="timezone">
+          <?php for($t = -12; $t <= 12; $t++): ?>
+            <option value="<?=$t?>" <?php if($data['timezone'] == $t): ?>selected<?php endif; ?>><?='GMT ' . $t?></option>
+          <?php endfor; ?>
+        </select>
+        <span class="help-inline"><?=$data['error']['nickname'][0]?></span>
+      </div>
+    </div>    
+    <div class="form-actions">
+      <input class="btn btn-success" name="profile" type="submit" value="<?=__('SUBMIT')?>"/>
+    </div>
+  </fieldset>
+</form>
+<div id="protocal" class="modal hide fade" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4><?=__('PROTOCAL')?></h4>
+  </div>
+  <div class="modal-body">
+    <p><?=__('PROTOCAL_TEXT')?></p>
+  </div>
+</div>
+<script type="text/javascript">
+$("input[name=signup]").click(function(e){
+  if(!$("input[name=protocal]").attr("checked")){
+    e.preventDefault();
+    $(this).next().show();
+  }
+})
+</script>

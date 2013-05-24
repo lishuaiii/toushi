@@ -1,0 +1,76 @@
+.feeds .media>.pull-left
+{
+	margin-right: 20px;
+}
+.feeds .media-heading>a
+{
+	color: #157ab5;
+}
+.feeds .media-body .meta
+{
+	margin-top: 10px;
+}
+.search
+{
+	margin-top: 20px;
+}
+footer a,
+footer a:hover,
+footer a:focus 
+{
+	color: #999;
+}
+.feeds .label,
+.tag .label
+{
+	cursor: pointer;
+}
+#main-menu-right>a
+{
+	padding: 14px 10px 9px;
+}
+#main-menu-right>a>img
+{
+	margin-right: 5px;
+	width: 27px;
+	height: 27px;
+}
+#wechat-qr
+{
+	width: 200px;
+	margin-left: 30px;
+}
+.form-actions .help-inline.error
+{
+	color: #bd4247;
+}
+.dropdown-menu
+{
+	min-width: 140px;
+}
+.feeds>hr:last-of-type
+{
+	display: none;
+}
+.pager li>a, .pager li>span
+{
+	padding: 3px 10px;
+	font-size: 12px;
+	border: none;
+}
+.feeds .media-object
+{
+	width: 32px;
+}
+.feeds .btn.disabled:hover
+{
+	cursor: pointer;
+}
+.deliver
+{
+	display: none;
+}
+.media-heading small
+{
+	float: right;
+}

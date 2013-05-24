@@ -1,0 +1,22 @@
+<form id="login-form" class="form-horizontal" method="post" action="?c=user&amp;a=login">
+  <fieldset>
+    <legend><?=__('LOGIN')?></legend>
+    <div class="control-group <?php if(isset($data['error']['email'])) echo 'error'; ?>">
+      <label class="control-label" for="email"><?=__('EMAIL')?></label>
+      <div class="controls">
+        <input type="text" name="email" id="email" placeholder="<?=__('EMAIL')?>" value="<?=v('email')?>" />
+        <span class="help-inline"><?=$data['error']['email'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['password'])) echo 'error'; ?>">
+      <label class="control-label" for="password"><?=__('PASSWORD')?></label>
+      <div class="controls">
+        <input type="password" name="password" id="password" placeholder="<?=__('PASSWORD')?>" />
+        <span class="help-inline"><?=$data['error']['password'][0]?></span>
+      </div>
+    </div>
+    <div class="form-actions">
+      <input class="btn btn-success" name="login" type="submit" value="<?=__('LOGIN')?>"/>
+    </div>
+  </fieldset>
+</form>

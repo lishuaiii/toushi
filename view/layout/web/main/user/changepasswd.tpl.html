@@ -1,0 +1,22 @@
+<form id="login-form" class="form-horizontal" method="post" action="?c=user&amp;a=changepasswd">
+  <fieldset>
+    <legend><?=__('CHANGE_PASSWORD')?></legend>
+    <div class="control-group <?php if(isset($data['error']['oldpasswd'])) echo 'error'; ?>">
+      <label class="control-label" for="oldpasswd"><?=__('OLD_PASSWORD')?></label>
+      <div class="controls">
+        <input type="password" name="oldpasswd" id="oldpasswd" placeholder="<?=__('OLD_PASSWORD')?>" />
+        <span class="help-inline"><?=$data['error']['oldpasswd'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['newpasswd'])) echo 'error'; ?>">
+      <label class="control-label" for="newpasswd"><?=__('NEW_PASSWORD')?></label>
+      <div class="controls">
+        <input type="password" name="newpasswd" id="newpasswd" placeholder="<?=__('NEW_PASSWORD')?>" />
+        <span class="help-inline"><?=$data['error']['newpasswd'][0]?></span>
+      </div>
+    </div>
+    <div class="form-actions">
+      <input class="btn btn-success" name="change-password" type="submit" value="<?=__('CHANGE_PASSWORD')?>"/>
+    </div>
+  </fieldset>
+</form>

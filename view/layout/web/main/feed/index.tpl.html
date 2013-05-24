@@ -1,0 +1,26 @@
+<ul class="nav nav-tabs" id="feed-tab">
+  <li class="active"><a href="javascript:;" data-filter="all"><?=__('ALL_SUBSCRIBED');?></a></li>
+  <li><a href="javascript:;" data-filter="mine"><?=__('MY_SUBSCRIBED');?></a></li>
+</ul>
+<div class="feeds">
+</div>
+<script type="text/javascript">
+$(".feeds").load("?c=feed&a=item<?php if(!empty($data['term'])): ?>&term=<?=$data['term']?><?php endif; ?>")
+$('#feed-tab a').click(function() {
+	if(!$(this).parent().hasClass("active")) {
+		$("#feed-tab li").removeClass("active")
+		$(this).parent().addClass("active")
+		if("mine" == $(this).attr("data-filter")) {
+			$(".feeds").load("?c=feed&a=item&filter=mine", function(json){
+				json = eval("(" + json + ")")
+				if(json.error_code) {
+					$(".feeds").html("")
+					$("#login").modal("show")
+				}
+			})
+		} else {
+			$(".feeds").load("?c=feed&a=item")
+		}
+	}
+})
+</script>
