@@ -62,7 +62,7 @@ function deliver($fid)
 
 function fetch()
 {
-	date_default_timezone_set("Etc/GMT");
+	date_default_timezone_set("UTC+8");
 	$perWeek = '* ' . date('G') . ' * * ' . date('w');
 	$perDay = '* ' . date('G') . ' * * *';
 	$sql = prepare("SELECT * FROM `feed` WHERE `crontab` = ?s OR `crontab` = ?s", array($perDay, $perWeek));
