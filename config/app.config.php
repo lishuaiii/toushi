@@ -1,7 +1,7 @@
 <?php
 $GLOBALS['config']['site_name'] = '投食';
-$GLOBALS['config']['site_subtitle'] = '每天投递新鲜的精神早餐到你Kindle';
 $GLOBALS['config']['site_domain'] = 'http://toushi.me';
+$GLOBALS['config']['site_subtitle'] = '每天投递新鲜的精神早餐到你的Kindle';
 $GLOBALS['config']['default_controller'] = 'feed';
 $GLOBALS['config']['signup_verify'] = FALSE;
 $GLOBALS['config']['max_feeds'] = 3;
