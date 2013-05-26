@@ -70,7 +70,7 @@ function fetch()
 	{
 		foreach($feeds as $feed)
 		{
-			exec('ebook-convert ' . $feeds['recipe'] . ' ' . $feeds['file'] . ' --output-profile kindle');
+			exec('ebook-convert ' . $feed['recipe'] . ' ' . $feed['file'] . ' --output-profile kindle');
 			$update_date_sql = prepare("UPDATE `feed` SET `update_time` = NOW() WHERE `fid` = ?i", array($feed['fid']));
 			run_sql($update_date_sql);
 		}
@@ -79,7 +79,7 @@ function fetch()
 
 function dispatch()
 {
-	$sql = 'SELECT `user`.`email`, `feed`.`file`, `feed`.`type`, `user`.`timezone` FROM `user`, `feed`, `user_feed` WHERE `user`.`uid` = `user_feed`.`uid` AND `feed`.`fid` = `user_feed`.`fid`';
+	$sql = 'SELECT `user`.`subscribed_account`, `feed`.`file`, `feed`.`type`, `user`.`timezone` FROM `user`, `feed`, `user_feed` WHERE `user`.`uid` = `user_feed`.`uid` AND `feed`.`fid` = `user_feed`.`fid`';
 	if($data = get_data($sql))
 	{
 		foreach($data as $val)
@@ -101,10 +101,10 @@ function dispatch()
 			date_default_timezone_set($timezone);
 			$hour = date('G');
 			$day  = date('j');
-
-			if($hour == 6 && (($val['type'] == 0) || ($day = 1 && $val['type'] == 1)))
+			
+                        if($hour == 6 && (($val['type'] == 0) || ($day = 1 && $val['type'] == 1)))
 			{
-				exec('echo "" | mutt -a "' . $val['file'] . '" -s "" -- ' . $val['email']);
+				exec('echo "" | mutt -a "' . $val['file'] . '" -s "" -- ' . $val['subscribed_account']);
 			}
 		}
 	}

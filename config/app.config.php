@@ -1,6 +1,6 @@
 <?php
 $GLOBALS['config']['site_name'] = '投食';
-$GLOBALS['config']['site_domain'] = 'http://localhost/toushi';
+$GLOBALS['config']['site_domain'] = 'http://toushi.me';
 $GLOBALS['config']['default_controller'] = 'feed';
 $GLOBALS['config']['signup_verify'] = FALSE;
 
