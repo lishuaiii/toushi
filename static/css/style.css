@@ -12,7 +12,12 @@
 }
 .search
 {
-	margin-top: 20px;
+	margin: 20px 0 0 0;
+	height: 40px;
+}
+.link
+{
+	margin-top: 30px;
 }
 footer a,
 footer a:hover,

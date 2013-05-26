@@ -32,7 +32,7 @@
       <div class="controls">
         <select class="input-medium" name="timezone">
           <?php for($t = -12; $t <= 12; $t++): ?>
-            <option value="<?=$t?>" <?php if($data['timezone'] == $t): ?>selected<?php endif; ?>><?='GMT ' . $t?></option>
+            <option value="<?=$t?>" <?php if($data['timezone'] == $t): ?>selected<?php endif; ?>><?='UTC' . ($t > 0 ? '+' . $t : $t)?></option>
           <?php endfor; ?>
         </select>
         <span class="help-inline"><?=$data['error']['nickname'][0]?></span>

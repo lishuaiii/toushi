@@ -87,15 +87,15 @@ function dispatch()
 			$timezone = intval($val['timezone']);
 			if($timezone > 0)
 			{
-				$timezone = 'Etc/GMT+' . $timezone;
+				$timezone = 'UTC+' . $timezone;
 			}
 			else if($timezone == 0)
 			{
-				$timezone = 'Etc/GMT';
+				$timezone = 'UTC';
 			} 
 			else
 			{
-				$timezone = 'Etc/GMT' . $timezone;
+				$timezone = 'UTC' . $timezone;
 			}
 			
 			date_default_timezone_set($timezone);
