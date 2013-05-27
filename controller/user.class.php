@@ -131,7 +131,7 @@ class userController extends appController
 
 			if(!isset($data['error']))
 			{
-				if(update_profile_by_uid($nickname, $subscribed_account, $timezone, $data['uid']))
+				if(update_profile_by_uid($nickname, $subscribed_account . $account, $timezone, $data['uid']))
 				{
 					$_SESSION['nickname'] = $nickname;
 					return info_page(__('UPDATE_PROFILE_TEXT', $nickname), __('PROFILE'));

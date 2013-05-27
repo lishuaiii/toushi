@@ -66,8 +66,8 @@ function fetch()
 	$perWeek = '* ' . date('G') . ' * * ' . date('w');
 	$perDay = '* ' . date('G') . ' * * *';
 	$sql = prepare("SELECT * FROM `feed` WHERE `crontab` = ?s OR `crontab` = ?s", array($perDay, $perWeek));
-	
-        if($feeds = get_data($sql))
+
+	if($feeds = get_data($sql))
 	{
 		foreach($feeds as $feed)
 		{
@@ -86,13 +86,13 @@ function dispatch()
 		foreach($data as $val)
 		{
 			$timezone = intval($val['timezone']);
-		        $timezoneName = timezone_name_from_abbr("", $timezone * 3600, false);
+			$timezoneName = timezone_name_from_abbr('', $timezone * 3600, false);
 
 			date_default_timezone_set($timezoneName);
 			$hour = date('G');
 			$day  = date('j');
-                        
-                        if($hour == 6 && (($val['type'] == 0) || ($day = 1 && $val['type'] == 1)))
+
+            if($hour == 6 && (($val['type'] == 0) || ($day = 1 && $val['type'] == 1)))
 			{
 				exec('echo "" | mutt -a "' . $val['file'] . '" -s "" -- ' . $val['subscribed_account']);
 			}
