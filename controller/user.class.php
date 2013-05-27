@@ -110,6 +110,7 @@ class userController extends appController
 		$data['title'] = $data['top_title'] = __('PROFILE');
 		$data += get_user_info_by_email($_SESSION['email']);
 		$data['subscribed_account'] = explode('@', $data['subscribed_account']);
+		$data['subscribed_account'][1] = '@' . $data['subscribed_account'][1];
 
 		if(v('profile'))
 		{
