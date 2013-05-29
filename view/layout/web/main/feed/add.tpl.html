@@ -1,0 +1,68 @@
+<form id="signup-form" class="form-horizontal" method="post" action="?c=feed&amp;a=add">
+  <fieldset>
+    <legend><?=__('ADD_FEED')?></legend>
+    <div class="control-group <?php if(isset($data['error']['name'])) echo 'error'; ?>">
+      <label class="control-label" for="name"><?=__('NAME')?></label>
+      <div class="controls">
+        <input type="text" name="name" id="name" placeholder="<?=__('NAME')?>" value="<?=v('name')?>" />
+        <span class="help-inline"><?=$data['error']['name'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['file'])) echo 'error'; ?>">
+      <label class="control-label" for="file"><?=__('FILE')?></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" name="file" id="file" placeholder="<?=__('FILE');?>" value="/home/ubuntu/mobi/" />
+        <span class="help-inline"><?=$data['error']['file'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['recipe'])) echo 'error'; ?>">
+      <label class="control-label" for="recipe"><?=__('RECIPE')?></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" name="recipe" id="recipe" placeholder="<?=__('RECIPE');?>" value="/home/ubuntu/recipe/" />
+        <span class="help-inline"><?=$data['error']['recipe'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['crontab'])) echo 'error'; ?>">
+      <label class="control-label" for="crontab"><?=__('CRONTAB')?></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" name="crontab" id="crontab" placeholder="<?=__('CRONTAB');?>" value="* 5 * * *" />
+        <span class="help-inline"><?=$data['error']['crontab'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['favicon'])) echo 'error'; ?>">
+      <label class="control-label" for="favicon"><?=__('FAVICON')?></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" name="favicon" id="favicon" placeholder="<?=__('FAVICON');?>" value="<?=v('favicon')?>" />
+        <span class="help-inline"><?=$data['error']['favicon'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['site_url'])) echo 'error'; ?>">
+      <label class="control-label" for="file"><?=__('SITE_URL')?></label>
+      <div class="controls">
+        <input class="input-xlarge" type="text" name="site_url" id="site_url" placeholder="<?=__('SITE_URL');?>" value="<?=v('site_url')?>" />
+        <span class="help-inline"><?=$data['error']['site_url'][0]?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['type'])) echo 'error'; ?>">
+      <label class="control-label" for="type"><?=__('TYPE')?></label>
+      <div class="controls">
+        <select class="input-medium" name="type">
+          <?php foreach(c('feed_type') as $val => $type): ?>
+            <option value="<?=$val?>"><?=$type?></option>
+          <?php endforeach; ?>
+        </select>
+        <span class="help-inline"><?=$data['error']['type'][0];?></span>
+      </div>
+    </div>
+    <div class="control-group <?php if(isset($data['error']['des'])) echo 'error'; ?>">
+      <label class="control-label" for="des"><?=__('DES')?></label>
+      <div class="controls">
+        <textarea class="input-xlarge" name="des" id="des" placeholder="<?=__('DES')?>" /><?=v('des')?></textarea>
+        <span class="help-inline"><?=$data['error']['des'][0]?></span>
+      </div>
+    </div>
+    <div class="form-actions">
+      <input class="btn btn-success" name="add" type="submit" value="<?=__('ADD')?>"/>
+    </div>
+  </fieldset>
+</form>

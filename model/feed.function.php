@@ -99,3 +99,12 @@ function dispatch()
 		}
 	}
 }
+
+function add($name, $file, $recipe, $crontab, $favicon, $site_url, $type, $des)
+{
+	$sql = prepare("INSERT INTO `feed` (`name`, `file`, `recipe`, `crontab`, `favicon`, `site_url`, `type`, `des`) VALUES (?s, ?s, ?s, ?s, ?s, ?s, ?i, ?s)", array($name, $file, $recipe, $crontab, $favicon, $site_url, $type, $des));
+	run_sql($sql);
+
+	if(db_errno() != 0) return false;
+	return true;
+}

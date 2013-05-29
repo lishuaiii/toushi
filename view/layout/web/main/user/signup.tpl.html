@@ -22,7 +22,7 @@
         <span class="help-inline"><?=$data['error']['password'][0]?></span>
       </div>
     </div>
-     <div class="control-group <?php if(isset($data['error']['subscribed_account'])) echo 'error'; ?>">
+    <div class="control-group <?php if(isset($data['error']['subscribed_account'])) echo 'error'; ?>">
       <label class="control-label" for="subscribed_account"><?=__('SUBSCRIBED_ACCOUNT')?></label>
       <div class="controls">
         <input type="text" class="input-medium" name="subscribed_account" id="subscribed_account" placeholder="<?=__('SUBSCRIBED_ACCOUNT')?>" value="<?=v('subscribed_account')?>" />
